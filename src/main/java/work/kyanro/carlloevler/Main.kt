@@ -7,16 +7,26 @@ import com.github.kittinunf.fuel.httpGet
 import kotlinx.coroutines.runBlocking
 
 fun main(args: Array<String>) = runBlocking {
-    val (req, res, result) = "http://httpbin.org/get"
-        .httpGet()
-        .awaitStringResponseResult()
+    val url = args.getOrNull(0)
 
-    result.fold(
-        { data ->
-            println(data)
-        }, { error ->
-            println("An error of type ${error.exception} happened: ${error.message}")
-        }
-    )
+    if (url == null) {
+        println("覚悟を決めた恐怖心 それが勇気だ。")
+        return@runBlocking
+    }
+
+    try {
+        val (_, _, result) = url
+            .httpGet()
+            .awaitStringResponseResult()
+        result.fold(
+            { data ->
+                println(data)
+            }, {
+                println("まず考え、それから行動せよ。")
+            }
+        )
+    } catch (e: Exception) {
+        println("ある人間が、聖人になるために、天使になる必要はない。")
+    }
 
 }
