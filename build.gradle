@@ -2,8 +2,12 @@ plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.31'
 }
 
+apply plugin: 'application'
+
 group 'work.kyanro'
 version '0.1'
+
+mainClassName = "work.kyanro.carlloevler.MainKt"
 
 repositories {
     mavenCentral()
